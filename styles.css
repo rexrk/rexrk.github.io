@@ -50,20 +50,13 @@ body {
   margin-bottom: 40px;
 }
 
-section {
-  display: block;
-  margin: 0 0 40px 0;
-}
-
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 45px;
   text-align: center;
-  padding: 20px 0;
-  background: rgba(0, 0, 0, 0.1);
-  color: var(--body-foreground);
 }
 
 a {
@@ -126,6 +119,7 @@ h6 {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(181, 232, 83, 0.1),
     0 0 10px rgba(181, 232, 83, 0.1);
 }
+
 .header-col {
   background: rgba(0, 0, 0, 0.1);
   padding-bottom: 40px;
@@ -137,7 +131,7 @@ header h1 {
   padding-top: 20px;
   font-weight: bolder;
   color: var(--header-background);
-  margin-left: -55px;
+  margin-left: -77px;
 }
 
 header h2 {
@@ -147,23 +141,59 @@ header h2 {
   margin-top: -20px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+#loading {
+  color: #411;
+  text-shadow: 0 0 15px #411;
+  font-size: 100px;
 }
 
-li {
-  margin-bottom: 10px;
+.intro-text {
+    flex: 1;
+    padding-right: 20px;
 }
 
+.intro-item {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.bullet-image {
+    width: 20px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between bullet and text */
+}
+
+.intro-image {
+    max-width: 600px;
+    margin-left: 55%;
+    margin-top: -45%;
+}
+
+
+/* Style for the glowing effect */
+.glow {
+  color: #f00;
+  text-shadow: 0px 0px 10px #f00;
+}
+
+#loading span {
+  display: inline-block;
+}
+
+
+
+/* AFter effectrs */
 @media screen and (max-width: 1111px) {
+
   header h1 {
     margin-left: 0;
   }
+
   main {
     padding-left: 5%;
     padding-right: 5%;
   }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -172,23 +202,9 @@ li {
     padding: 10px 20px;
   }
 }
-
-/* animations */
-/* Style for the loading container only */
-/* Style for the loading container only */
-#loading {
-    color: #411; 
-    text-shadow: 0 0 15px #411; 
-}
-  
-  /* Style for the glowing effect */
-.glow {
-    color: #f00;
-    text-shadow: 0px 0px 10px #f00;
+@media screen and (max-width: 700px) {
+    #loading {
+        font-size: 70px;
+      }
 }
 
-#loading span {
-    display: inline-block;
-    padding: 0 10px;
-}
-  
