@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume - Raman Kumar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header-col">
+        <main>
+            <header>
+                <h1>:// localhost:8080/resume</h1>
+                <h2>My Professional Resume</h2>
+                <button onclick="location.href='index.html'">Home</button>
+                <button onclick="location.href='skills.html'">My Skills</button>
+                <button onclick="location.href='projects.html'">Personal Projects</button>
+                <button onclick="location.href='https://github.com/rexrk'">
+                    <img src="assets/blacktocat.png" class="button-icon">
+                    GitHub
+                </button>
+                <button onclick="location.href='resume.html'">My Resume</button>
+                <button onclick="location.href='contact.html'">Contact</button>
+            </header>
+        </main>
+    </div>
+    <div class="full-width-line"></div>
+
+    <main>
+        <div id="resume-container">
+            <!-- Resume content and download link -->
+            <a href="assets/resume.pdf" download>Download My Resume (PDF)</a>
+            <!-- Add an embedded PDF viewer if desired -->
+            <iframe src="assets/resume.pdf" width="100%" height="1000px" style="border: none;"></iframe>
+        </div>
+    </main>
+
+    <script src="javascript.js"></script>
+</body>
+
+</html>

@@ -171,9 +171,9 @@ header h2 {
 }
 
 .intro-image {
-    max-width: 600px;
-    margin-left: 55%;
-    margin-top: -45%;
+    max-width: 500px;
+    margin-left: 65%;
+    margin-top: -52%;
 }
 
 
@@ -187,20 +187,27 @@ header h2 {
   display: inline-block;
 }
 
-.json-container {
-  padding: 20px;
-  background-color: #040404;
+/* json background */
+.backBlack pre{
+  background-color: #000000; /* Black background for JSON data */
+  color: rgb(219, 205, 205); /* Blue color for text */
+  padding: 10px;
   border-radius: 5px;
-  margin: 20px auto;
-  width: 80%;
-  max-width: 800px;
+  overflow-x: scroll;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-pre {
-  white-space: pre-wrap; /* Wrap long lines */
-  word-wrap: break-word; /* Break long words */
+.backBlack-skill pre{
+  background-color: #000000; /* Black background for JSON data */
+  color: rgb(219, 205, 205); /* Blue color for text */
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
+.backBlack {
+  margin-bottom: 50px;
+}
 
 
 /* AFter effectrs */

@@ -14,12 +14,12 @@
         <main>
             <header>
                 <h1>:// localhost:8080/projects</h1>
-                <h2>Access Granted: A Showcase of My Work</h2>
+                <h2>Access Granted: A Showcase of My Work.</h2>
                 <button onclick="location.href='index.html'">Home</button>
                 <button onclick="location.href='skills.html'">My Skills</button>
                 <button onclick="location.href='projects.html'">Personal Projects</button>
                 <button onclick="location.href='https://github.com/rexrk'">
-                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" class="button-icon">
+                    <img src="assets/blacktocat.png" class="button-icon">
                     GitHub
                 </button>
                 <button onclick="location.href='resume.html'">My Resume</button>
@@ -29,31 +29,13 @@
     </div>
     <div class="full-width-line"></div>
 
-    <!-- JSON Data Section -->
     <main>
-        <h1>Project Data in JSON Format</h1>
-        <div class="json-container">
-            <pre id="json-display"></pre>
+        <div id="projects-container">
+            <!-- Project boxes will be inserted here -->
         </div>
-        <a href="projects.json">Project Link</a>
     </main>
 
-    <script>
-        // Fetch JSON data and display it
-        fetch('projects.json')
-            .then(response => response.json())
-            .then(data => {
-                // Get the JSON display element
-                const jsonDisplay = document.getElementById('json-display');
-
-                // Format the JSON data with proper indentation
-                const formattedJson = JSON.stringify(data, null, 4);
-
-                // Set the formatted JSON as the text content of the pre element
-                jsonDisplay.textContent = formattedJson;
-            })
-            .catch(error => console.error('Error fetching the JSON data:', error));
-    </script>
+    <script src="projects.js"></script>
 </body>
 
 </html>
