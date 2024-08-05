@@ -34,7 +34,6 @@ body {
   width: 100%;
   box-sizing: border-box;
   background: url("assets/bkg.png") repeat;
-  /* background: #111; */
   background-size: auto;
   color: var(--body-foreground);
   font-size: 16px;
@@ -105,6 +104,14 @@ button:hover {
 button:focus {
   outline: 2px solid var(--header-background);
 }
+
+.button-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-top: -2px;
+    height: 20px;
+}
+
 
 h1,
 h2,
@@ -178,6 +185,20 @@ header h2 {
 
 #loading span {
   display: inline-block;
+}
+
+.json-container {
+  padding: 20px;
+  background-color: #040404;
+  border-radius: 5px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 800px;
+}
+
+pre {
+  white-space: pre-wrap; /* Wrap long lines */
+  word-wrap: break-word; /* Break long words */
 }
 
 
