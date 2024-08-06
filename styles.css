@@ -272,7 +272,7 @@ header h2 {
   .intro-image {
     opacity: 20%;
     top: 0;
-    right: -25px;
+    right: -20px;
     z-index: 0;
   }
 }
