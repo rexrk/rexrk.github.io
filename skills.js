@@ -90,7 +90,7 @@ const skillsContainer = document.getElementById('skills-container');
 
 skills.forEach(skill => {
     const skillBox = document.createElement('div');
-    skillBox.className = 'backBlack-skill';
+    skillBox.className = 'backBlack';
     
     skillBox.innerHTML = `
         <h2>${skill.title}</h2>

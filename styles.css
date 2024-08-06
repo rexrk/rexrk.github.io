@@ -132,6 +132,9 @@ h6 {
   padding-bottom: 40px;
   width: 100%;
 }
+h1 {
+  font-size: 25px;
+}
 
 header h1 {
   font-size: 30px;
@@ -194,14 +197,6 @@ header h2 {
   padding: 10px;
   border-radius: 5px;
   overflow-x: scroll;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.backBlack-skill pre{
-  background-color: #000000; /* Black background for JSON data */
-  color: rgb(219, 205, 205); /* Blue color for text */
-  padding: 10px;
-  border-radius: 5px;
   font-family: 'Courier New', Courier, monospace;
 }
 
