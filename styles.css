@@ -32,6 +32,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
   background: url("assets/bkg.png") repeat;
   background-size: auto;
@@ -50,11 +51,8 @@ body {
 }
 
 footer {
-  position: fixed;
   bottom: 0;
-  left: 0;
   width: 100%;
-  height: 45px;
   text-align: center;
 }
 
@@ -106,10 +104,10 @@ button:focus {
 }
 
 .button-icon {
-    vertical-align: middle;
-    margin-right: 5px;
-    margin-top: -2px;
-    height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -2px;
+  height: 20px;
 }
 
 h1 {
@@ -165,26 +163,42 @@ header h2 {
   font-size: 100px;
 }
 
-.intro-text {
-    flex: 1;
-    padding-right: 20px;
+/* Ensure the .intro container is a flexbox */
+.intro {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  gap: 20px; /* Space between the text and image */
+  position: relative; /* Allows absolute positioning of the image */
 }
 
+/* Style for the intro-text container */
+.intro-text {
+  flex: 1; /* Allows it to take up the available space */
+  z-index: 1;
+}
+
+/* Style for the intro-image */
+.intro-image {
+  position: absolute;
+  top: -120px; /* Adjust vertical position */
+  right: 0; /* Move image to the right */
+  max-width: 450px;
+  height: auto;
+  z-index: 0;
+}
+
+/* Optional: Style for each intro-item if needed */
 .intro-item {
-    display: flex;
-    align-items: center; /* Align items vertically */
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 10px; /* Space between items */
 }
 
 .bullet-image {
-    width: 20px; /* Adjust size as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 10px; /* Space between bullet and text */
+  width: 20px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Space between bullet and text */
 }
-
-.intro-image {
-    max-width: 100px;
-}
-
 
 /* Style for the glowing effect */
 .glow {
@@ -197,13 +211,13 @@ header h2 {
 }
 
 /* json background */
-.backBlack pre{
+.backBlack pre {
   background-color: #000000; /* Black background for JSON data */
   color: rgb(219, 205, 205); /* Blue color for text */
   padding: 10px;
   border-radius: 5px;
   overflow-x: scroll;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .backBlack {
@@ -233,10 +247,8 @@ header h2 {
   max-width: 20px; /* Adjust the size as needed */
 }
 
-
 /* AFter effectrs */
 @media screen and (max-width: 1111px) {
-
   header h1 {
     margin-left: 0;
   }
@@ -245,7 +257,6 @@ header h2 {
     padding-left: 5%;
     padding-right: 5%;
   }
-
 }
 
 @media screen and (max-width: 480px) {
@@ -255,8 +266,12 @@ header h2 {
   }
 }
 @media screen and (max-width: 700px) {
-    #loading {
-        font-size: 70px;
-      }
-}
+  #loading {
+    font-size: 70px;
+  }
 
+  .intro-image {
+    opacity: 20%;
+    top: 0;
+  }
+}
