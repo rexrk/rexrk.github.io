@@ -112,6 +112,9 @@ button:focus {
     height: 20px;
 }
 
+h1 {
+  font-size: 25px;
+}
 
 h1,
 h2,
@@ -141,7 +144,12 @@ header h1 {
   padding-top: 20px;
   font-weight: bolder;
   color: var(--header-background);
-  margin-left: -77px;
+  margin-left: 0;
+  word-wrap: break-word; /* Ensures long words break and wrap */
+  overflow-wrap: break-word; /* Same as word-wrap but newer name */
+  word-break: break-all; /* Breaks long words at any point to prevent overflow */
+  max-width: 100%; /* Prevents the text from overflowing the container */
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
 }
 
 header h2 {
@@ -174,9 +182,7 @@ header h2 {
 }
 
 .intro-image {
-    max-width: 500px;
-    margin-left: 65%;
-    margin-top: -52%;
+    max-width: 100px;
 }
 
 
