@@ -209,6 +209,29 @@ header h2 {
   margin-bottom: 50px;
 }
 
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contact-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center; /* Aligns items vertically */
+  margin-bottom: 10px;
+}
+
+.bullet-image {
+  margin-right: 10px; /* Space between bullet and text */
+  max-width: 20px; /* Adjust the size as needed */
+}
+
 
 /* AFter effectrs */
 @media screen and (max-width: 1111px) {
