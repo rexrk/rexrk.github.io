@@ -1,102 +1,57 @@
-const skills = [
-    {
-        "title": "Languages & Frameworks",
-        "technologies": [
-            "Java Core & Advanced",
-            "Object-Oriented Programming",
-            {
-                "Spring Framework": [
-                    "Web",
-                    "WebMvc",
-                    "Data JPA",
-                    "Data JDBC",
-                    "ORM",
-                    "JMS",
-                    "Spring Boot",
-                    "Cloud",
-                    "Test"
-                ]
-            }
-        ]
-    }
-    ,
-    {
-        "title": "Development Tools & Practices",
-        "technologies": [
-            "Data Structures & Algorithms (DSA)",
-            "RESTful API Design",
-            "Lombok",
-            "Actuator",
-            "HATEOAS",
-            "DevTools",
-            "Microservices",
-            "Distributed Tracing",
-            "Zipkin",
-            "Eureka",
-            "Maven",
-            "Gradle",
-            "Spring Security",
-            "Spring AOP",
-            "Spring MVC",
-            "JUnit",
-            "Mockito",
-            "Open-source contributions"
-        ]
-    },
-    {
-        "title": "Cloud & DevOps",
-        "technologies": [
-            "Docker",
-            "Kubernetes",
-            "AWS",
-            "GCP"
-        ]
-    },
-    {
-        "title": "Frontend",
-        "technologies": [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "React.js"
-        ]
-    },
-    {
-        "title": "Version Control",
-        "technologies": [
-            "Git",
-            "GitHub"
-        ]
-    },
-    {
-        "title": "Database Management",
-        "technologies": [
-            "MySQL",
-            "H2 Database"
-        ]
-    },
-    {
-        "title": "IDEs",
-        "technologies": [
-            "IntelliJ IDEA",
-            "VS Code",
-            "Eclipse"
-        ]
-    }
-    
-];
+const skills = {
+  languages: ["Java", "Python"],
 
-const skillsContainer = document.getElementById('skills-container');
+  frameworks: {
+    spring: [
+      "Spring Boot", "Spring MVC", "Spring Data JPA",
+      "Spring Security", "Spring Cloud", "Spring AOP", "Spring Test"
+    ]
+  },
 
-skills.forEach(skill => {
-    const skillBox = document.createElement('div');
-    skillBox.className = 'backBlack';
-    
-    skillBox.innerHTML = `
-        <h2>${skill.title}</h2>
-        <pre>${JSON.stringify(skill, null, 2)}</pre>
-    `;
-    
-    skillsContainer.appendChild(skillBox);
-});
+  backend_practices: [
+    "REST API Design", "Microservices Architecture",
+    "Distributed Systems", "Service-to-Service Communication",
+    "Configuration Management", "API Gateway Integration"
+  ],
 
+  security: [
+    "OAuth2", "JWT", "mTLS",
+    "Role-Based Access Control", "Secure API Design"
+  ],
+
+  databases: ["MySQL", "H2", "MongoDB", "Redis"],
+
+  cloud_devops: ["Docker", "Kubernetes", "AWS", "GCP", "Utho", "Runpod"],
+
+  testing: ["JUnit", "Mockito", "Integration Testing", "Test containers"],
+
+  observability: ["Spring Boot Actuator", "Distributed Tracing", "Zipkin"],
+
+  build_tools: ["Maven", "Gradle"],
+
+  version_control: ["Git", "GitHub", "GitLab", "Bitbucket"],
+
+  frontend_exposure: ["HTML", "CSS", "JavaScript", "Basic React.js"]
+};
+
+// compact JSON formatting
+let json = JSON.stringify(skills, null, 2)
+  .replace(/\[\n\s+/g, "[ ")
+  .replace(/\n\s+\]/g, " ]")
+  .replace(/",\n\s+"/g, '", "');
+
+// syntax highlighting (keys + strings only)
+json = json
+  // keys
+  .replace(/"([^"]+)"\s*:/g, '<span class="json-key">"$1"</span>:')
+  // string values
+  .replace(/:\s*"([^"]+)"/g, ': <span class="json-string">"$1"</span>');
+
+const container = document.getElementById("skills-container");
+
+container.innerHTML = `
+  <div class="response-box">
+    <div class="response-header">Response Body</div>
+    <pre class="response-json">${json}</pre>
+  </div>
+`;

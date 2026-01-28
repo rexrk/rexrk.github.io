@@ -1,60 +1,136 @@
 const projects = [
-    {
-        "title": "Microservices with Java",
-        "description": "Designed and implemented various microservices concepts using Spring Cloud. Gained hands-on experience with different aspects of microservices architecture.",
-        "technologies": "Java, Spring Boot, Spring Cloud, Docker, Kubernetes, Google Cloud Platform",
-        "link": "https://github.com/rexrk/Java_Microservices"
-    }
-    ,
-    {
-        "title": "Movie Booking System - Backend",
-        "description": "Designed and implemented the backend system for a movie booking application. Utilized Java and Spring Boot for development, Docker for containerization, and AWS for deployment and cloud services.",
-        "technologies": "Java, Spring Boot, Docker, AWS",
-        "link": "https://github.com/rexrk"
-    }
-    
-    ,
-    {
-        "title": "Email Sender with Spring Boot and React",
-        "description": "Developed an application for sending emails using Spring Boot for the backend and React for the frontend.",
-        "technologies": "Java, Spring Boot, React, Rest API, Java Messaging Service",
-        "link": "https://github.com/rexrk/Email-Sender-Spring-React"
-    }
-    ,
-    {
-        "title": "IDPS Intrusion Detection and Prevention System",
-        "description": "Developed an Intrusion Detection and Prevention System (IDPS) to enhance security by detecting and preventing potential threats.",
-        "technologies": "Java, Spring Boot, Microservices, MySql, H2, Rest API",
-        "link": "https://github.com/rexrk/IDPS-IntrusionDb-Defender"
-    }
-    ,
-    {
-        "title": "React-SpringBoot Todo Web App",
-        "description": "Developed a full-stack Todo Web Application using React for the frontend and Spring Boot for the backend. The application allows users to manage their tasks efficiently.",
-        "technologies": "React, Spring Boot, RESTful APIs, MySql, Docker, AWS>",
-        "link": "https://github.com/rexrk/React-SpringBoot-TodoWebApp"
-    }
-    ,
-    {
-        "title": "Product Management App",
-        "description": "Developed a product management application using the Spring Framework with MVC architecture. This application allows users to manage product listings, including CRUD operations.",
-        "technologies": "Java, JSP, Spring Framework, Spring MVC, Spring AOP",
-        "link": "https://github.com/rexrk/Product-Management-App"
-    }
-    
+  {
+    name: "Recruitr",
+    type: "backend-system",
+    description:
+      "Backend system to manage organizations, candidates, jobs, and vendor/client relationships.",
+    responsibilities: [
+      "Designed REST APIs for managing organizations, candidates, and job workflows",
+      "Implemented authentication and authorization using Spring Security",
+      "Designed relational data models using Spring Data JPA",
+      "Worked with containerized deployments on Kubernetes"
+    ],
+    technologies: [
+      "Java", "Spring Boot", "Spring Data JPA",
+      "Spring Security", "MySQL", "Kubernetes"
+    ],
+    source: "https://github.com/rexrk"
+  },
+
+  {
+    name: "ScoutlyMCP Server",
+    type: "ai-backend-service",
+    description:
+      "MCP server that exposes Android SMS data as contextual input to LLMs using ADB integration.",
+    responsibilities: [
+      "Implemented an MCP-compatible backend server",
+      "Integrated Android Debug Bridge (ADB) for SMS extraction",
+      "Exposed structured context APIs for LLM consumption",
+      "Focused on controlled and secure data access"
+    ],
+    technologies: [
+      "Python", "FastMCP", "ADB", "Claude"
+    ],
+    source: "https://github.com/rexrk"
+  },
+
+  {
+    name: "Microservices with Java",
+    type: "distributed-system",
+    description:
+      "Implemented core microservices concepts using Spring Cloud to understand distributed architecture patterns.",
+    technologies: [
+      "Java", "Spring Boot", "Spring Cloud",
+      "Docker", "Kubernetes", "GCP"
+    ],
+    source: "https://github.com/rexrk/Java_Microservices"
+  },
+
+  {
+    name: "Movie Booking System - Backend",
+    type: "backend-service",
+    description:
+      "Backend system for a movie booking application handling bookings and availability.",
+    technologies: [
+      "Java", "Spring Boot", "Docker", "AWS"
+    ],
+    source: "https://github.com/rexrk"
+  },
+
+  {
+    name: "Email Sender (Spring Boot + React)",
+    type: "backend-service",
+    description:
+      "Application for sending emails using Spring Boot backend and a lightweight React frontend.",
+    technologies: [
+      "Java", "Spring Boot", "React",
+      "REST APIs", "Java Messaging Service"
+    ],
+    source: "https://github.com/rexrk/Email-Sender-Spring-React"
+  },
+
+  {
+    name: "IDPS (Intrusion Detection & Prevention System)",
+    type: "security-system",
+    description:
+      "Security-focused system to detect and prevent intrusion attempts using backend rules.",
+    technologies: [
+      "Java", "Spring Boot", "Microservices",
+      "MySQL", "H2", "REST APIs"
+    ],
+    source: "https://github.com/rexrk/IDPS-IntrusionDb-Defender"
+  },
+
+  {
+    name: "React + Spring Boot Todo App",
+    type: "full-stack",
+    description:
+      "Full-stack todo application with RESTful backend and React frontend.",
+    technologies: [
+      "React", "Spring Boot", "REST APIs",
+      "MySQL", "Docker", "AWS"
+    ],
+    source: "https://github.com/rexrk/React-SpringBoot-TodoWebApp"
+  },
+
+  {
+    name: "Product Management Application",
+    type: "backend-mvc",
+    description:
+      "Product management application built using Spring MVC with CRUD operations.",
+    technologies: [
+      "Java", "Spring MVC", "Spring AOP", "JSP"
+    ],
+    source: "https://github.com/rexrk/Product-Management-App"
+  }
 ];
 
-const projectsContainer = document.getElementById('projects-container');
+const container = document.getElementById("projects-container");
 
 projects.forEach(project => {
-    const projectBox = document.createElement('div');
-    projectBox.className = 'backBlack';
-    
-    projectBox.innerHTML = `
-        <h2>${project.title}</h2>
-        <pre>${JSON.stringify(project, null, 2)}</pre>
-        <a href="${project.link}">View Source Code</a>
-    `;
-    
-    projectsContainer.appendChild(projectBox);
+  // format JSON for single project
+  let json = JSON.stringify(project, null, 2)
+    .replace(/\[\n\s+/g, "[ ")
+    .replace(/\n\s+\]/g, " ]")
+    .replace(/",\n\s+"/g, '", "');
+
+  // syntax highlighting
+  json = json
+    .replace(/"([^"]+)"\s*:/g, '<span class="json-key">"$1"</span>:')
+    .replace(/:\s*"([^"]+)"/g, ': <span class="json-string">"$1"</span>');
+
+  const block = document.createElement("div");
+  block.className = "response-box";
+
+  block.innerHTML = `
+    <pre class="response-json">${json}</pre>
+    <div class="terminal-action">
+      <span class="cmd">$</span>
+      <a href="${project.source}" target="_blank">
+        open source → ${project.name}
+      </a>
+    </div>
+  `;
+
+  container.appendChild(block);
 });
