@@ -15,8 +15,6 @@
         <header>
             <div class="nav-buttons">
                 <button onclick="location.href='portfolio.html'">Portfolio</button>
-                <button onclick="location.href='skills.html'">My Skills</button>
-                <button onclick="location.href='projects.html'">Personal Projects</button>
                 <button class="active">My Resume</button>
                 <button onclick="location.href='contact.html'">Connect</button>
             </div>
@@ -28,8 +26,9 @@
     <!-- CONTEXT -->
     <div class="header-context">
         <header>
-            <h1>$ aws s3 cp s3://raman-resume/latest.pdf ./resume.pdf</h1>
-            <h2>download: s3://raman-resume/latest.pdf</h2>
+            <h1>$ gcloud storage cp gs://raman-resume/latest.pdf ./resume.pdf</h1>
+            <h2>→ auth: service-account active</h2>
+            <h2>→ transfer: 1 file OK</h2>
         </header>
     </div>
 
@@ -38,7 +37,7 @@
 
         <!-- OPEN -->
         <section class="section">
-            <div class="section-cmd">$ open resume.pdf</div>
+            <div class="section-cmd">$ open ./resume.pdf</div>
 
             <div class="terminal-actions">
                 <a href="https://drive.google.com/file/d/1ZhhmVIX8DFzRiXO8gbzjlJq2KSaBMHnz/preview" target="_blank"
@@ -55,7 +54,7 @@
 
         <!-- INLINE RENDER -->
         <section class="section">
-            <div class="section-cmd">$ render resume --inline</div>
+            <div class="section-cmd">$ render ./resume.pdf --inline</div>
 
             <div class="resume-frame">
                 <iframe src="https://drive.google.com/file/d/1ZhhmVIX8DFzRiXO8gbzjlJq2KSaBMHnz/preview"

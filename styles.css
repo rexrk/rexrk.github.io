@@ -314,8 +314,8 @@ a:hover {
 }
 
 .resume-frame iframe {
-    width: 900px;
-    height: 300px;
+    width: 1000px;
+    height: 400px;
     border: none;
     border-radius: 4px;
 }
@@ -459,4 +459,14 @@ a:hover {
 .glitch:hover::before,
 .glitch:hover::after {
     animation: glitch 0.25s steps(2, end);
+}
+
+.terminal-block a {
+    color: #4ea1ff; /* clean blue */
+    text-decoration: none;
+}
+
+.terminal-block a:hover {
+    color: #7bb8ff;
+    text-decoration: underline;
 }
