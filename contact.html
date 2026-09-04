@@ -12,6 +12,10 @@
 
 <body>
 
+    <!-- WATCH DOGS / HACKER BACKGROUND CANVAS & GLASS OVERLAY -->
+    <canvas id="cyber-bg"></canvas>
+    <div class="cyber-overlay"></div>
+
     <!-- MAIN APP WRAPPER -->
     <div id="app" class="app-container">
 
@@ -223,6 +227,9 @@
         </div>
     </div>
 
+    <!-- HACKER BACKGROUND SCRIPT -->
+    <script src="cyber-bg.js"></script>
+
     <!-- COPY & WINDOW SCRIPTS -->
     <script>
         function copyToClipboard(text, btn) {
@@ -255,7 +262,7 @@
             const container = document.getElementById("app");
             if (container) {
                 if (container.style.maxWidth === "98%") {
-                    container.style.maxWidth = "1100px";
+                    container.style.maxWidth = "1160px";
                 } else {
                     container.style.maxWidth = "98%";
                 }

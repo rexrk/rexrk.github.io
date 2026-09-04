@@ -1,27 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-    --bg-base: #080c0e;
-    --window-bg: rgba(13, 18, 22, 0.90);
-    --window-border: rgba(46, 204, 113, 0.22);
-    --card-bg: rgba(18, 25, 31, 0.75);
-    --card-border: rgba(255, 255, 255, 0.08);
-    --card-border-hover: rgba(57, 211, 83, 0.35);
+    --bg-base: #05080c;
+    
+    /* Liquid Glass & Translucent Acrylic */
+    --glass-window: rgba(8, 14, 22, 0.42);
+    --glass-window-border: rgba(255, 255, 255, 0.16);
+    --glass-window-glow: rgba(56, 189, 248, 0.16);
+    
+    --glass-card: rgba(255, 255, 255, 0.035);
+    --glass-card-hover: rgba(255, 255, 255, 0.07);
+    --glass-card-border: rgba(255, 255, 255, 0.09);
+    --glass-card-border-hover: rgba(56, 189, 248, 0.45);
 
     --terminal-green: #39d353;
     --terminal-green-dim: #2ea043;
-    --terminal-green-glow: rgba(57, 211, 83, 0.25);
+    --terminal-green-glow: rgba(57, 211, 83, 0.3);
     
     --cyan: #38bdf8;
-    --cyan-dim: rgba(56, 189, 248, 0.15);
+    --cyan-dim: rgba(56, 189, 248, 0.18);
     --purple: #c084fc;
     --yellow: #facc15;
     --orange: #fb923c;
     --red: #f87171;
 
-    --text-primary: #e6edf3;
-    --text-secondary: #8b949e;
-    --text-muted: #6e7681;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
     --code-bg: rgba(0, 0, 0, 0.35);
 
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'Cascadia Code', 'Segoe UI Mono', monospace;
@@ -43,19 +48,51 @@ html, body {
     letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
-/* Ambient glow background with subtle grid */
+/* ========================================================
+   ONE COMPLETE LIVING GLASS BACKGROUND
+======================================================== */
 body {
     background:
-        linear-gradient(rgba(57, 211, 83, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(57, 211, 83, 0.02) 1px, transparent 1px),
-        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
-        radial-gradient(circle at 85% 20%, rgba(192, 132, 252, 0.05) 0%, transparent 45%),
-        radial-gradient(circle at 50% 80%, rgba(57, 211, 83, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 12% 16%, rgba(56, 189, 248, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(192, 132, 252, 0.18) 0%, transparent 46%),
+        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 20% 85%, rgba(46, 204, 113, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 82% 85%, rgba(56, 189, 248, 0.16) 0%, transparent 50%),
+        linear-gradient(rgba(56, 189, 248, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.035) 1px, transparent 1px),
         var(--bg-base);
-    background-size: 32px 32px, 32px 32px, auto, auto, auto, auto;
-    background-position: -1px -1px, -1px -1px, 0 0, 0 0, 0 0, 0 0;
+    background-size: auto, auto, auto, auto, auto, 36px 36px, 36px 36px, auto;
+    background-attachment: fixed;
+}
+
+/* Watch Dogs / Hacker Cyber Background Canvas */
+#cyber-bg {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    display: block;
+}
+
+/* Glass Sheen & CRT Scanlines Overlay */
+.cyber-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 45%, rgba(56, 189, 248, 0.02) 100%),
+        linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.22) 50%),
+        radial-gradient(circle at center, transparent 60%, rgba(3, 6, 9, 0.7) 100%);
+    background-size: auto, 100% 3px, auto;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.65;
 }
 
 /* Custom scrollbars */
@@ -64,20 +101,20 @@ body {
     height: 6px;
 }
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(57, 211, 83, 0.4);
+    background: rgba(56, 189, 248, 0.5);
 }
 
 /* Selection */
 ::selection {
-    background: rgba(57, 211, 83, 0.25);
-    color: #fff;
+    background: rgba(56, 189, 248, 0.35);
+    color: #ffffff;
 }
 
 /* ========================================================
@@ -86,7 +123,7 @@ body {
 #startup-screen {
     position: fixed;
     inset: 0;
-    background: #070a0c;
+    background: #05080c;
     z-index: 99999;
     padding: 24px;
     overflow-y: auto;
@@ -102,21 +139,22 @@ body {
 }
 
 .skip-btn {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-secondary);
-    padding: 6px 12px;
+    padding: 6px 14px;
     font-family: var(--font-mono);
     font-size: 12px;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
 }
 
 .skip-btn:hover {
-    background: rgba(57, 211, 83, 0.15);
-    border-color: var(--terminal-green);
-    color: var(--terminal-green);
+    background: rgba(56, 189, 248, 0.25);
+    border-color: var(--cyan);
+    color: #ffffff;
 }
 
 #startup-logs {
@@ -135,40 +173,58 @@ body {
 .log-msg { color: var(--text-primary); }
 
 /* ========================================================
-   CONTAINER / WINDOW SHELL
+   CONTAINER / FROSTED GLASS WINDOW SHELL
 ======================================================== */
 .app-container {
-    max-width: 1100px;
-    margin: 28px auto 60px;
+    max-width: 1160px;
+    margin: 32px auto 70px;
     padding: 0 16px;
     transition: opacity 0.4s ease;
 }
 
-/* The primary terminal window */
+/* Pure Frosted Glass Terminal Window */
 .terminal-window {
-    background: var(--window-bg);
-    border: 1px solid var(--window-border);
-    border-radius: 8px;
+    background: var(--glass-window);
+    border: 1px solid var(--glass-window-border);
+    border-radius: 12px;
     box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(0, 0, 0, 0.8),
-        0 0 25px rgba(57, 211, 83, 0.05);
-    backdrop-filter: blur(12px);
+        0 24px 64px rgba(0, 0, 0, 0.55),
+        inset 0 1px 2px rgba(255, 255, 255, 0.22),
+        inset 0 0 25px rgba(56, 189, 248, 0.04),
+        0 0 45px var(--glass-window-glow);
+    backdrop-filter: blur(24px) saturate(210%);
+    -webkit-backdrop-filter: blur(24px) saturate(210%);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+/* Glass Top Specular Shine Line */
+.terminal-window::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 40%, rgba(56, 189, 248, 0.6) 70%, transparent 100%);
+    pointer-events: none;
+    z-index: 10;
 }
 
 /* ========================================================
-   WINDOW TITLE BAR & CONTROLS
+   WINDOW TITLE BAR & CONTROLS (GLASSY)
 ======================================================== */
 .window-titlebar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 16px;
-    background: rgba(10, 14, 18, 0.95);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 12px 18px;
+    background: rgba(14, 22, 32, 0.50);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     user-select: none;
 }
 
@@ -188,23 +244,23 @@ body {
 }
 
 .dot:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
     opacity: 0.9;
 }
 
 .dot-red {
     background: #ff5f56;
-    box-shadow: 0 0 6px rgba(255, 95, 86, 0.4);
+    box-shadow: 0 0 8px rgba(255, 95, 86, 0.5);
 }
 
 .dot-yellow {
     background: #ffbd2e;
-    box-shadow: 0 0 6px rgba(255, 189, 46, 0.4);
+    box-shadow: 0 0 8px rgba(255, 189, 46, 0.5);
 }
 
 .dot-green {
     background: #27c93f;
-    box-shadow: 0 0 6px rgba(39, 201, 63, 0.4);
+    box-shadow: 0 0 8px rgba(39, 201, 63, 0.5);
 }
 
 .window-title {
@@ -248,7 +304,7 @@ body {
 }
 
 /* ========================================================
-   SYSTEM METRICS BANNER
+   SYSTEM METRICS BANNER (GLASSY)
 ======================================================== */
 .system-metrics-bar {
     display: flex;
@@ -257,8 +313,10 @@ body {
     justify-content: space-between;
     gap: 12px;
     padding: 8px 18px;
-    background: rgba(0, 0, 0, 0.28);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(5, 9, 14, 0.30);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     font-size: 12px;
     color: var(--text-muted);
 }
@@ -298,14 +356,16 @@ body {
 }
 
 /* ========================================================
-   NAVIGATION TABS (TMUX / CLI STYLE)
+   NAVIGATION TABS (TMUX / GLASS STYLE)
 ======================================================== */
 .terminal-nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    background: rgba(8, 12, 16, 0.7);
+    background: rgba(8, 14, 22, 0.35);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 0 8px;
     gap: 4px;
 }
@@ -332,14 +392,14 @@ body {
 }
 
 .nav-tab:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .nav-tab.active {
     color: var(--terminal-green);
     border-bottom-color: var(--terminal-green);
-    background: rgba(57, 211, 83, 0.06);
+    background: rgba(57, 211, 83, 0.12);
     font-weight: 500;
 }
 
@@ -355,7 +415,7 @@ body {
 
 .nav-tab-exit:hover {
     color: #ff9999;
-    background: rgba(248, 113, 113, 0.1);
+    background: rgba(248, 113, 113, 0.15);
 }
 
 /* ========================================================
@@ -363,7 +423,7 @@ body {
 ======================================================== */
 .session-context {
     padding: 20px 24px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     background: rgba(0, 0, 0, 0.15);
 }
 
@@ -399,7 +459,7 @@ body {
 
 .context-subline .env-tag {
     background: rgba(57, 211, 83, 0.12);
-    border: 1px solid rgba(57, 211, 83, 0.25);
+    border: 1px solid rgba(57, 211, 83, 0.3);
     color: var(--terminal-green);
     padding: 2px 8px;
     border-radius: 3px;
@@ -441,22 +501,44 @@ body {
 }
 
 /* ========================================================
-   PROFILE / WHOAMI CARD
+   GLASS CARDS & MODULES (PURE GLASSMORPHISM)
 ======================================================== */
+.profile-card,
+.service-card,
+.stack-group,
+.contact-card,
+.terminal-block,
+.resume-frame-container {
+    background: var(--glass-card);
+    border: 1px solid var(--glass-card-border);
+    border-radius: 8px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profile-card:hover,
+.service-card:hover,
+.stack-group:hover,
+.contact-card:hover {
+    background: var(--glass-card-hover);
+    border-color: var(--glass-card-border-hover);
+    box-shadow: 
+        0 14px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 25px rgba(56, 189, 248, 0.18);
+    transform: translateY(-2px);
+}
+
+/* Profile / Whoami */
 .profile-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    padding: 20px;
+    padding: 22px;
     display: flex;
     gap: 24px;
     align-items: flex-start;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    transition: border-color 0.2s ease;
-}
-
-.profile-card:hover {
-    border-color: var(--card-border-hover);
 }
 
 .profile-avatar-box {
@@ -469,7 +551,8 @@ body {
     height: 96px;
     object-fit: cover;
     border-radius: 6px;
-    border: 1px solid rgba(57, 211, 83, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     display: block;
 }
 
@@ -544,9 +627,9 @@ body {
 
 .meta-badge {
     display: inline-block;
-    background: rgba(56, 189, 248, 0.1);
+    background: rgba(56, 189, 248, 0.14);
     color: var(--cyan);
-    border: 1px solid rgba(56, 189, 248, 0.25);
+    border: 1px solid rgba(56, 189, 248, 0.35);
     padding: 1px 7px;
     border-radius: 3px;
     font-size: 11px;
@@ -563,27 +646,16 @@ body {
 }
 
 /* ========================================================
-   PROJECTS (MICROSERVICE / API ENDPOINT CARDS)
+   PROJECTS (GLASSY MICROSERVICE CARDS)
 ======================================================== */
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 18px;
 }
 
 .service-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    transition: all 0.2s ease;
-}
-
-.service-card:hover {
-    border-color: var(--card-border-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 15px rgba(57, 211, 83, 0.08);
 }
 
 .service-header {
@@ -591,8 +663,8 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px 16px;
-    background: rgba(0, 0, 0, 0.28);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.025);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     font-size: 12px;
 }
 
@@ -604,18 +676,18 @@ body {
 }
 
 .http-method {
-    background: rgba(57, 211, 83, 0.15);
+    background: rgba(57, 211, 83, 0.16);
     color: var(--terminal-green);
-    border: 1px solid rgba(57, 211, 83, 0.3);
+    border: 1px solid rgba(57, 211, 83, 0.35);
     padding: 2px 6px;
     border-radius: 3px;
     font-size: 11px;
 }
 
 .http-method.get {
-    background: rgba(56, 189, 248, 0.15);
+    background: rgba(56, 189, 248, 0.16);
     color: var(--cyan);
-    border-color: rgba(56, 189, 248, 0.3);
+    border-color: rgba(56, 189, 248, 0.35);
 }
 
 .endpoint-path {
@@ -631,7 +703,7 @@ body {
 }
 
 .service-body {
-    padding: 16px;
+    padding: 18px;
 }
 
 .service-title {
@@ -678,8 +750,8 @@ body {
 }
 
 .tech-tag {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--cyan);
     padding: 2px 8px;
     border-radius: 3px;
@@ -691,8 +763,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .action-link {
@@ -702,46 +774,44 @@ body {
     color: var(--terminal-green);
     text-decoration: none;
     font-size: 12px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 4px;
-    border: 1px solid rgba(57, 211, 83, 0.25);
-    background: rgba(57, 211, 83, 0.08);
+    border: 1px solid rgba(57, 211, 83, 0.3);
+    background: rgba(57, 211, 83, 0.12);
+    backdrop-filter: blur(8px);
     transition: all 0.2s ease;
 }
 
 .action-link:hover {
-    background: rgba(57, 211, 83, 0.18);
+    background: rgba(57, 211, 83, 0.25);
     border-color: var(--terminal-green);
     color: #ffffff;
-    box-shadow: 0 0 10px rgba(57, 211, 83, 0.2);
+    box-shadow: 0 0 14px rgba(57, 211, 83, 0.35);
 }
 
 .action-link.secondary {
     color: var(--text-secondary);
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .action-link.secondary:hover {
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* ========================================================
-   TECH STACK MATRIX
+   TECH STACK MATRIX (GLASSY)
 ======================================================== */
 .stack-matrix {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 14px;
+    gap: 16px;
 }
 
 .stack-group {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    padding: 14px 16px;
+    padding: 16px;
 }
 
 .stack-group-title {
@@ -761,8 +831,8 @@ body {
 }
 
 .stack-chip {
-    background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
     padding: 3px 8px;
     border-radius: 3px;
@@ -773,7 +843,8 @@ body {
 }
 
 .stack-chip.featured {
-    border-color: rgba(57, 211, 83, 0.3);
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(56, 189, 248, 0.1);
     color: #ffffff;
 }
 
@@ -788,10 +859,7 @@ body {
    CURRENT FOCUS / SYSTEM STATUS
 ======================================================== */
 .terminal-block {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    padding: 14px 18px;
+    padding: 16px 20px;
     font-size: 13px;
     line-height: 1.6;
     color: var(--text-primary);
@@ -822,15 +890,19 @@ body {
 }
 
 /* ========================================================
-   INTERACTIVE CLI COMMAND PROMPT
+   INTERACTIVE CLI COMMAND PROMPT (GLASSY)
 ======================================================== */
 .cli-box {
     margin-top: 36px;
-    background: rgba(5, 8, 10, 0.85);
-    border: 1px solid rgba(57, 211, 83, 0.25);
-    border-radius: 6px;
-    padding: 12px 16px;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+    background: rgba(5, 9, 14, 0.45);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 8px;
+    padding: 14px 18px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 .cli-input-line {
@@ -869,16 +941,17 @@ body {
 .cli-hint-tag {
     color: var(--cyan);
     cursor: pointer;
-    background: rgba(56, 189, 248, 0.08);
-    padding: 1px 6px;
+    background: rgba(56, 189, 248, 0.12);
+    padding: 2px 7px;
     border-radius: 3px;
-    border: 1px solid rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.25);
     transition: all 0.15s ease;
 }
 
 .cli-hint-tag:hover {
-    background: rgba(56, 189, 248, 0.18);
+    background: rgba(56, 189, 248, 0.25);
     color: #ffffff;
+    border-color: var(--cyan);
 }
 
 .cli-output {
@@ -891,7 +964,7 @@ body {
 }
 
 /* ========================================================
-   RESUME VIEWER PAGE STYLING
+   RESUME VIEWER PAGE STYLING (GLASSY)
 ======================================================== */
 .resume-action-bar {
     display: flex;
@@ -901,11 +974,7 @@ body {
 }
 
 .resume-frame-container {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
     padding: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .resume-frame-container iframe {
@@ -917,7 +986,7 @@ body {
 }
 
 /* ========================================================
-   CONTACT & PROFILES PAGE STYLING
+   CONTACT & PROFILES PAGE STYLING (GLASSY)
 ======================================================== */
 .contact-grid {
     display: grid;
@@ -926,15 +995,7 @@ body {
 }
 
 .contact-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    padding: 16px;
-    transition: all 0.2s ease;
-}
-
-.contact-card:hover {
-    border-color: var(--card-border-hover);
+    padding: 18px;
 }
 
 .contact-card-title {
@@ -958,7 +1019,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 13px;
 }
 
@@ -984,8 +1045,8 @@ body {
 }
 
 .copy-btn {
-    background: none;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     color: var(--text-secondary);
     font-family: var(--font-mono);
     font-size: 11px;
@@ -993,12 +1054,14 @@ body {
     border-radius: 3px;
     cursor: pointer;
     margin-left: 8px;
+    backdrop-filter: blur(4px);
     transition: all 0.15s ease;
 }
 
 .copy-btn:hover {
     border-color: var(--terminal-green);
     color: var(--terminal-green);
+    background: rgba(57, 211, 83, 0.15);
 }
 
 /* ========================================================
@@ -1007,7 +1070,9 @@ body {
 .exit-overlay {
     position: fixed;
     inset: 0;
-    background: #000000;
+    background: rgba(3, 6, 9, 0.94);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1030,18 +1095,20 @@ body {
 
 .exit-reconnect-btn {
     margin-top: 14px;
-    background: rgba(57, 211, 83, 0.1);
+    background: rgba(57, 211, 83, 0.12);
     border: 1px solid var(--terminal-green);
     color: var(--terminal-green);
     font-family: var(--font-mono);
-    padding: 6px 14px;
+    padding: 7px 16px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 12px;
+    transition: all 0.2s ease;
 }
 
 .exit-reconnect-btn:hover {
-    background: rgba(57, 211, 83, 0.2);
+    background: rgba(57, 211, 83, 0.25);
+    box-shadow: 0 0 15px rgba(57, 211, 83, 0.3);
 }
 
 /* ========================================================
