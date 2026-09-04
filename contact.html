@@ -4,60 +4,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raman – Contact</title>
+    <title>Raman Kumar – Connect & Channels</title>
+    <meta name="description" content="Connect with Raman Kumar, Backend Engineer specializing in Java, Spring Boot, Microservices, and Distributed Systems.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/profile.png">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <div class="header-col">
-        <header>
-            <div class="nav-buttons">
-                <button onclick="location.href='portfolio.html'">Portfolio</button>
-                <button onclick="location.href='resume.html'">My Resume</button>
-                <button class="active">Connect</button>
+    <!-- MAIN APP WRAPPER -->
+    <div id="app" class="app-container">
+
+        <!-- TERMINAL WORKSTATION WINDOW -->
+        <div class="terminal-window" id="terminal-window">
+
+            <!-- WINDOW CONTROLS & TITLEBAR -->
+            <div class="window-titlebar">
+                <div class="window-dots">
+                    <span class="dot dot-red" id="dot-exit" title="Close session (exit)"></span>
+                    <span class="dot dot-yellow" id="dot-minimize" title="Toggle compact mode"></span>
+                    <span class="dot dot-green" id="dot-maximize" title="Toggle full width"></span>
+                </div>
+                <div class="window-title">
+                    <span class="host">raman@portfolio</span>
+                    <span class="separator">:</span>
+                    <span class="path">~/channels/connect.sh</span>
+                    <span class="separator">(bash)</span>
+                </div>
+                <div class="window-status-quick">
+                    <span class="status-pulse"></span>
+                    <span>ONLINE · TLS 1.3</span>
+                </div>
             </div>
-        </header>
+
+            <!-- SYSTEM METRICS STRIP -->
+            <div class="system-metrics-bar">
+                <div class="metrics-left">
+                    <div class="metric-item">
+                        <span class="metric-label">NETWORK:</span>
+                        <span class="metric-value ok">● ESTABLISHED</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">PROTOCOLS:</span>
+                        <span class="metric-value cyan">HTTPS / SMTP / SSH</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">RESPONSE_TIME:</span>
+                        <span class="metric-value purple">&lt; 24h</span>
+                    </div>
+                </div>
+                <div class="metrics-right">
+                    <div class="metric-item">
+                        <span class="metric-label">CHANNELS:</span>
+                        <span class="metric-value ok">7 Active</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">ENCRYPTION:</span>
+                        <span class="metric-value">AES-256-GCM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TMUX STYLE NAVIGATION TABS -->
+            <nav class="terminal-nav" aria-label="Terminal Navigation">
+                <a href="portfolio.html" class="nav-tab">
+                    <span class="tab-num">[1]</span> overview.sh
+                </a>
+                <a href="portfolio.html#projects" class="nav-tab">
+                    <span class="tab-num">[2]</span> services.api
+                </a>
+                <a href="portfolio.html#stack" class="nav-tab">
+                    <span class="tab-num">[3]</span> stack.env
+                </a>
+                <a href="resume.html" class="nav-tab">
+                    <span class="tab-num">[4]</span> resume.pdf
+                </a>
+                <a href="contact.html" class="nav-tab active">
+                    <span class="tab-num">[5]</span> connect.sh
+                </a>
+                <button id="exit-btn" class="nav-tab nav-tab-exit" title="Disconnect Session">
+                    <span class="tab-num">[x]</span> exit
+                </button>
+            </nav>
+
+            <!-- SESSION CONTEXT HEADER -->
+            <div class="session-context">
+                <div class="context-ssh-line">
+                    <span class="context-prompt">raman@prod-srv-01:~$</span>
+                    <span class="context-command">netstat -tlpn | grep -E "(listen|connect)"</span>
+                </div>
+                <div class="context-subline">
+                    <span>→ 7 listening endpoints found · inbound connection ready</span>
+                    <span class="env-tag">STATUS=LISTENING</span>
+                    <span class="env-tag">FIREWALL=PERMISSIVE</span>
+                </div>
+            </div>
+
+            <!-- TERMINAL MAIN BODY -->
+            <main class="terminal-body">
+
+                <div class="contact-grid">
+
+                    <!-- DIRECT COMMUNICATION -->
+                    <div class="contact-card">
+                        <div class="contact-card-title">
+                            <span class="chip-dot"></span>
+                            <span>$ contact --direct-channels</span>
+                        </div>
+
+                        <ul class="channel-list">
+                            <li class="channel-item">
+                                <span class="channel-label">email</span>
+                                <div class="channel-value">
+                                    <a href="mailto:kraman938@gmail.com" id="email-link">kraman938@gmail.com</a>
+                                    <button class="copy-btn" onclick="copyToClipboard('kraman938@gmail.com', this)">copy</button>
+                                </div>
+                            </li>
+                            <li class="channel-item">
+                                <span class="channel-label">linkedin</span>
+                                <div class="channel-value">
+                                    <a href="https://linkedin.com/in/raman-linking" target="_blank" rel="noopener noreferrer">
+                                        linkedin.com/in/raman-linking ↗
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="channel-item">
+                                <span class="channel-label">x / twitter</span>
+                                <div class="channel-value">
+                                    <a href="https://x.com/ra_man_kumar" target="_blank" rel="noopener noreferrer">
+                                        x.com/ra_man_kumar ↗
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="channel-item">
+                                <span class="channel-label">instagram</span>
+                                <div class="channel-value">
+                                    <a href="https://www.instagram.com/rexrk_/" target="_blank" rel="noopener noreferrer">
+                                        instagram.com/rexrk_ ↗
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CODING PROFILES -->
+                    <div class="contact-card">
+                        <div class="contact-card-title">
+                            <span class="chip-dot"></span>
+                            <span>$ profiles --engineering-hubs</span>
+                        </div>
+
+                        <ul class="channel-list">
+                            <li class="channel-item">
+                                <span class="channel-label">github</span>
+                                <div class="channel-value">
+                                    <a href="https://github.com/rexrk" target="_blank" rel="noopener noreferrer">
+                                        github.com/rexrk ↗
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="channel-item">
+                                <span class="channel-label">leetcode</span>
+                                <div class="channel-value">
+                                    <a href="https://leetcode.com/u/RexRK/" target="_blank" rel="noopener noreferrer">
+                                        leetcode.com/u/RexRK ↗
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="channel-item">
+                                <span class="channel-label">geeksforgeeks</span>
+                                <div class="channel-value">
+                                    <a href="https://www.geeksforgeeks.org/profile/rexrk?tab=activity" target="_blank" rel="noopener noreferrer">
+                                        geeksforgeeks.org/profile/rexrk ↗
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- QUICK MESSAGE / DISPATCH SECTION -->
+                <section class="terminal-section" style="margin-top: 28px;">
+                    <div class="section-cmd">
+                        <span class="prompt-sym">$</span> echo "Send dispatch packet to Raman" | mailx
+                        <span class="cmd-comment"># Direct transmission</span>
+                    </div>
+
+                    <div class="terminal-block">
+                        <p style="margin: 0 0 10px; color: var(--text-secondary);">
+                            Interested in discussing distributed architectures, microservices, backend roles, or collaboration?
+                            Feel free to reach out directly via email or LinkedIn.
+                        </p>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="mailto:kraman938@gmail.com?subject=Backend%20Opportunity%20/%20Inquiry" class="action-link">
+                                <span>✉ Open Mail Client ($ mailx)</span>
+                            </a>
+                            <a href="https://linkedin.com/in/raman-linking" target="_blank" rel="noopener noreferrer" class="action-link secondary">
+                                <span>💬 Connect on LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+
     </div>
 
-    <div class="nav-separator"></div>
-
-    <!-- CONTEXT -->
-    <div class="header-context">
-        <header>
-            <h1>$ connect raman</h1>
-            <h2>Available channels</h2>
-        </header>
+    <!-- EXIT OVERLAY SCREEN -->
+    <div id="exit-output" class="exit-overlay">
+        <div class="exit-content">
+            <p class="exit-cmd">$ exit</p>
+            <p>Connection to <span style="color: var(--cyan);">portfolio.internal</span> closed by remote host.</p>
+            <p style="color: var(--text-muted); font-size: 12px;">Session terminated gracefully [code 0].</p>
+            <button class="exit-reconnect-btn" onclick="reconnectSession()">⚡ Reconnect Session</button>
+        </div>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
+    <!-- COPY & WINDOW SCRIPTS -->
+    <script>
+        function copyToClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = "copied!";
+                btn.style.borderColor = "var(--terminal-green)";
+                btn.style.color = "var(--terminal-green)";
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.borderColor = "";
+                    btn.style.color = "";
+                }, 1800);
+            }).catch(() => {
+                window.location.href = "mailto:" + text;
+            });
+        }
 
-        <!-- CONTACT -->
-        <section class="section">
-            <div class="section-cmd">$ contact --list</div>
+        document.getElementById("dot-exit").addEventListener("click", triggerExit);
+        document.getElementById("exit-btn").addEventListener("click", triggerExit);
 
-            <pre class="terminal-block">
-email         : <a href="mailto:kraman938@gmail.com">kraman938@gmail.com</a>
-linkedin      : <a href="https://linkedin.com/in/raman-linking" target="_blank">linkedin.com/in/raman-linking</a>
-x             : <a href="https://x.com/ra_man_kumar" target="_blank">x.com/ra_man_kumar</a>
-instagram     : <a href="https://www.instagram.com/rexrk_/" target="_blank">instagram.com/rexrk_</a>
-            </pre>
-        </section>
+        document.getElementById("dot-minimize").addEventListener("click", () => {
+            const body = document.querySelector(".terminal-body");
+            if (body) {
+                body.style.display = body.style.display === "none" ? "block" : "none";
+            }
+        });
 
-        <!-- CODING PROFILES -->
-        <section class="section">
-            <div class="section-cmd">$ profiles --coding</div>
+        document.getElementById("dot-maximize").addEventListener("click", () => {
+            const container = document.getElementById("app");
+            if (container) {
+                if (container.style.maxWidth === "98%") {
+                    container.style.maxWidth = "1100px";
+                } else {
+                    container.style.maxWidth = "98%";
+                }
+            }
+        });
 
-            <pre class="terminal-block">
-Github        : <a href="https://github.com/rexrk" target="_blank">github.com/rexrk</a>
-leetcode      : <a href="https://leetcode.com/u/RexRK/" target="_blank">leetcode.com/u/RexRK</a>
-geeksforgeeks : <a href="https://www.geeksforgeeks.org/profile/rexrk?tab=activity" target="_blank">geeksforgeeks.org/profile/rexrk</a>
-            </pre>
-        </section>
+        function triggerExit() {
+            const app = document.getElementById("app");
+            const exitText = document.getElementById("exit-output");
+            app.style.transition = "opacity 0.4s ease";
+            app.style.opacity = "0";
+            setTimeout(() => {
+                exitText.style.pointerEvents = "all";
+                exitText.style.opacity = "1";
+            }, 400);
+        }
 
-    </main>
+        function reconnectSession() {
+            const app = document.getElementById("app");
+            const exitText = document.getElementById("exit-output");
+            exitText.style.opacity = "0";
+            exitText.style.pointerEvents = "none";
+            setTimeout(() => {
+                app.style.opacity = "1";
+            }, 200);
+        }
+    </script>
 
 </body>
 

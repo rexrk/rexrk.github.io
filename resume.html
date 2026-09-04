@@ -4,66 +4,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raman – Resume</title>
+    <title>Raman Kumar – Resume</title>
+    <meta name="description" content="Resume of Raman Kumar, Backend Engineer specializing in Java, Spring Boot, Microservices, and Distributed Systems.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/profile.png">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <div class="header-col">
-        <header>
-            <div class="nav-buttons">
-                <button onclick="location.href='portfolio.html'">Portfolio</button>
-                <button class="active">My Resume</button>
-                <button onclick="location.href='contact.html'">Connect</button>
+    <!-- MAIN APP WRAPPER -->
+    <div id="app" class="app-container">
+
+        <!-- TERMINAL WORKSTATION WINDOW -->
+        <div class="terminal-window" id="terminal-window">
+
+            <!-- WINDOW CONTROLS & TITLEBAR -->
+            <div class="window-titlebar">
+                <div class="window-dots">
+                    <span class="dot dot-red" id="dot-exit" title="Close session (exit)"></span>
+                    <span class="dot dot-yellow" id="dot-minimize" title="Toggle compact mode"></span>
+                    <span class="dot dot-green" id="dot-maximize" title="Toggle full width"></span>
+                </div>
+                <div class="window-title">
+                    <span class="host">raman@portfolio</span>
+                    <span class="separator">:</span>
+                    <span class="path">~/documents/resume.pdf</span>
+                    <span class="separator">(bash)</span>
+                </div>
+                <div class="window-status-quick">
+                    <span class="status-pulse"></span>
+                    <span>200 OK · AUTH OK</span>
+                </div>
             </div>
-        </header>
+
+            <!-- SYSTEM METRICS STRIP -->
+            <div class="system-metrics-bar">
+                <div class="metrics-left">
+                    <div class="metric-item">
+                        <span class="metric-label">FILE:</span>
+                        <span class="metric-value cyan">resume.pdf</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">MIME:</span>
+                        <span class="metric-value">application/pdf</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">STATUS:</span>
+                        <span class="metric-value ok">● CACHED</span>
+                    </div>
+                </div>
+                <div class="metrics-right">
+                    <div class="metric-item">
+                        <span class="metric-label">GCS_BUCKET:</span>
+                        <span class="metric-value">gs://raman-resume</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">TRANSFER:</span>
+                        <span class="metric-value ok">1 file OK</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TMUX STYLE NAVIGATION TABS -->
+            <nav class="terminal-nav" aria-label="Terminal Navigation">
+                <a href="portfolio.html" class="nav-tab">
+                    <span class="tab-num">[1]</span> overview.sh
+                </a>
+                <a href="portfolio.html#projects" class="nav-tab">
+                    <span class="tab-num">[2]</span> services.api
+                </a>
+                <a href="portfolio.html#stack" class="nav-tab">
+                    <span class="tab-num">[3]</span> stack.env
+                </a>
+                <a href="resume.html" class="nav-tab active">
+                    <span class="tab-num">[4]</span> resume.pdf
+                </a>
+                <a href="contact.html" class="nav-tab">
+                    <span class="tab-num">[5]</span> connect.sh
+                </a>
+                <button id="exit-btn" class="nav-tab nav-tab-exit" title="Disconnect Session">
+                    <span class="tab-num">[x]</span> exit
+                </button>
+            </nav>
+
+            <!-- SESSION CONTEXT HEADER -->
+            <div class="session-context">
+                <div class="context-ssh-line">
+                    <span class="context-prompt">raman@prod-srv-01:~$</span>
+                    <span class="context-command">gcloud storage cp gs://raman-resume/latest.pdf ./resume.pdf</span>
+                </div>
+                <div class="context-subline">
+                    <span>→ auth: service-account active [token: OK]</span>
+                    <span class="env-tag">TRANSFER_MODE=binary</span>
+                    <span class="env-tag">MD5=verified</span>
+                </div>
+            </div>
+
+            <!-- TERMINAL MAIN BODY -->
+            <main class="terminal-body">
+
+                <!-- ACTIONS -->
+                <section class="terminal-section">
+                    <div class="section-cmd">
+                        <span class="prompt-sym">$</span> open ./resume.pdf --actions
+                        <span class="cmd-comment"># External links & downloads</span>
+                    </div>
+
+                    <div class="resume-action-bar">
+                        <a href="https://drive.google.com/file/d/1ZhhmVIX8DFzRiXO8gbzjlJq2KSaBMHnz/preview" target="_blank" rel="noopener noreferrer" class="action-link">
+                            <span>▶ Preview in New Tab</span>
+                        </a>
+
+                        <a href="https://drive.google.com/uc?export=download&id=1ZhhmVIX8DFzRiXO8gbzjlJq2KSaBMHnz" target="_blank" rel="noopener noreferrer" class="action-link secondary">
+                            <span>⬇ Download PDF (Direct)</span>
+                        </a>
+
+                        <a href="cv/" target="_blank" class="action-link secondary">
+                            <span>🔗 /cv Permalink</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- INLINE RENDER -->
+                <section class="terminal-section">
+                    <div class="section-cmd">
+                        <span class="prompt-sym">$</span> render ./resume.pdf --inline --viewport-fit
+                        <span class="cmd-comment"># Embedded document viewer</span>
+                    </div>
+
+                    <div class="resume-frame-container">
+                        <iframe src="https://drive.google.com/file/d/1ZhhmVIX8DFzRiXO8gbzjlJq2KSaBMHnz/preview"
+                            title="Raman Kumar Resume" allow="autoplay">
+                        </iframe>
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+
     </div>
 
-    <div class="nav-separator"></div>
-
-    <!-- CONTEXT -->
-    <div class="header-context">
-        <header>
-            <h1>$ gcloud storage cp gs://raman-resume/latest.pdf ./resume.pdf</h1>
-            <h2>→ auth: service-account active</h2>
-            <h2>→ transfer: 1 file OK</h2>
-        </header>
+    <!-- EXIT OVERLAY SCREEN -->
+    <div id="exit-output" class="exit-overlay">
+        <div class="exit-content">
+            <p class="exit-cmd">$ exit</p>
+            <p>Connection to <span style="color: var(--cyan);">portfolio.internal</span> closed by remote host.</p>
+            <p style="color: var(--text-muted); font-size: 12px;">Session terminated gracefully [code 0].</p>
+            <button class="exit-reconnect-btn" onclick="reconnectSession()">⚡ Reconnect Session</button>
+        </div>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
+    <!-- SCRIPT FOR WINDOW CONTROLS & EXIT -->
+    <script>
+        document.getElementById("dot-exit").addEventListener("click", triggerExit);
+        document.getElementById("exit-btn").addEventListener("click", triggerExit);
 
-        <!-- OPEN -->
-        <section class="section">
-            <div class="section-cmd">$ open ./resume.pdf</div>
+        document.getElementById("dot-minimize").addEventListener("click", () => {
+            const body = document.querySelector(".terminal-body");
+            if (body) {
+                body.style.display = body.style.display === "none" ? "block" : "none";
+            }
+        });
 
-            <div class="terminal-actions">
-                <a href="https://drive.google.com/file/d/1ZhhmVIX8DFzRiXO8gbzjlJq2KSaBMHnz/preview" target="_blank"
-                    class="terminal-btn">
-                    ▶ Preview Resume
-                </a>
+        document.getElementById("dot-maximize").addEventListener("click", () => {
+            const container = document.getElementById("app");
+            if (container) {
+                if (container.style.maxWidth === "98%") {
+                    container.style.maxWidth = "1100px";
+                } else {
+                    container.style.maxWidth = "98%";
+                }
+            }
+        });
 
-                <a href="https://drive.google.com/uc?export=download&id=1ZhhmVIX8DFzRiXO8gbzjlJq2KSaBMHnz"
-                    class="terminal-btn">
-                    ⬇ Download Resume
-                </a>
-            </div>
-        </section>
+        function triggerExit() {
+            const app = document.getElementById("app");
+            const exitText = document.getElementById("exit-output");
+            app.style.transition = "opacity 0.4s ease";
+            app.style.opacity = "0";
+            setTimeout(() => {
+                exitText.style.pointerEvents = "all";
+                exitText.style.opacity = "1";
+            }, 400);
+        }
 
-        <!-- INLINE RENDER -->
-        <section class="section">
-            <div class="section-cmd">$ render ./resume.pdf --inline</div>
-
-            <div class="resume-frame">
-                <iframe src="https://drive.google.com/file/d/1ZhhmVIX8DFzRiXO8gbzjlJq2KSaBMHnz/preview"
-                    allow="autoplay">
-                </iframe>
-            </div>
-        </section>
-
-    </main>
+        function reconnectSession() {
+            const app = document.getElementById("app");
+            const exitText = document.getElementById("exit-output");
+            exitText.style.opacity = "0";
+            exitText.style.pointerEvents = "none";
+            setTimeout(() => {
+                app.style.opacity = "1";
+            }, 200);
+        }
+    </script>
 
 </body>
 

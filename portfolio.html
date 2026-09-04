@@ -4,129 +4,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raman – Portfolio</title>
+    <title>Raman Kumar – Backend Engineer</title>
+    <meta name="description" content="Portfolio of Raman Kumar, Backend Engineer specializing in Java, Spring Boot, Microservices, and Distributed Systems.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/profile.png">
 </head>
 
 <body>
 
-    <!-- EVERYTHING THAT SHOULD FADE -->
-    <div id="app">
-
-        <!-- STARTUP LOGS (one-time) -->
-        <div id="startup-screen">
-            <pre id="startup-logs"></pre>
+    <!-- STARTUP SCREEN (Simulated Spring Boot Boot Sequence) -->
+    <div id="startup-screen">
+        <div id="startup-controls">
+            <button class="skip-btn" onclick="dismissStartup()">Skip [ESC]</button>
         </div>
+        <pre id="startup-logs"></pre>
+    </div>
 
-        <!-- HEADER -->
-        <div class="header-col">
-            <header>
-                <div class="nav-buttons">
-                    <button class="active">Portfolio</button>
-                    <button onclick="location.href='resume.html'">My Resume</button>
-                    <button onclick="location.href='contact.html'">Connect</button>
+    <!-- MAIN APP WRAPPER -->
+    <div id="app" class="app-container">
+
+        <!-- TERMINAL WORKSTATION WINDOW -->
+        <div class="terminal-window" id="terminal-window">
+
+            <!-- WINDOW CONTROLS & TITLEBAR -->
+            <div class="window-titlebar">
+                <div class="window-dots">
+                    <span class="dot dot-red" id="dot-exit" title="Close session (exit)"></span>
+                    <span class="dot dot-yellow" id="dot-minimize" title="Toggle compact mode"></span>
+                    <span class="dot dot-green" id="dot-maximize" title="Toggle full width"></span>
                 </div>
-            </header>
+                <div class="window-title">
+                    <span class="host">raman@portfolio</span>
+                    <span class="separator">:</span>
+                    <span class="path">~/services</span>
+                    <span class="separator">(bash)</span>
+                </div>
+                <div class="window-status-quick">
+                    <span class="status-pulse"></span>
+                    <span>PORT: 8080 · 200 OK</span>
+                </div>
+            </div>
 
-            <!-- EXIT BUTTON -->
-            <button id="exit-btn" class="terminal-exit">exit</button>
-        </div>
-
-        <div class="nav-separator"></div>
-
-        <!-- CONTEXT -->
-        <div class="header-context">
-            <header>
-                <h1>$ ssh raman@portfolio</h1>
-                <h2 id="login-time">Last login: -- · Environment: prod</h2>
-            </header>
-        </div>
-
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
-
-            <!-- WHOAMI -->
-            <section class="section">
-                <div class="section-cmd">$ whoami</div>
-
-                <div class="whoami">
-                    <div class="glitch">
-                        <img src="assets/profile.png" alt="Raman Kumar" class="profile-photo">
+            <!-- SYSTEM METRICS STRIP -->
+            <div class="system-metrics-bar">
+                <div class="metrics-left">
+                    <div class="metric-item">
+                        <span class="metric-label">JVM:</span>
+                        <span class="metric-value ok">● RUNNING (Java 21)</span>
                     </div>
-                    <div class="whoami-text">
-                        <p><span class="key">name</span>      : Raman Kumar</p>
-                        <p><span class="key">role</span>      : Backend Engineer</p>
-                        <p><span class="key">experience</span>: 2 years</p>
-                        <p><span class="key">location</span>  : New Delhi, India</p>
+                    <div class="metric-item">
+                        <span class="metric-label">HEAP:</span>
+                        <span class="metric-value cyan" id="heap-metric">384MB / 1024MB</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">LATENCY:</span>
+                        <span class="metric-value purple" id="latency-metric">12ms</span>
                     </div>
                 </div>
+                <div class="metrics-right">
+                    <div class="metric-item">
+                        <span class="metric-label">HOST:</span>
+                        <span class="metric-value">rexrk.is-a.dev</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">PROFILE:</span>
+                        <span class="metric-value ok">prod</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">UPTIME:</span>
+                        <span class="metric-value">99.98%</span>
+                    </div>
+                </div>
+            </div>
 
-                <pre class="terminal-block">
-Backend engineer with a curiosity for how systems behave under the hood.
-From APIs and microservices to infrastructure and networking, 
-I enjoy building and understanding the layers that make software work.
-                </pre>
-            </section>
+            <!-- TMUX STYLE NAVIGATION TABS -->
+            <nav class="terminal-nav" aria-label="Terminal Navigation">
+                <a href="portfolio.html" class="nav-tab active">
+                    <span class="tab-num">[1]</span> overview.sh
+                </a>
+                <a href="#projects" class="nav-tab" onclick="smoothScroll('projects')">
+                    <span class="tab-num">[2]</span> services.api
+                </a>
+                <a href="#stack" class="nav-tab" onclick="smoothScroll('stack')">
+                    <span class="tab-num">[3]</span> stack.env
+                </a>
+                <a href="resume.html" class="nav-tab">
+                    <span class="tab-num">[4]</span> resume.pdf
+                </a>
+                <a href="contact.html" class="nav-tab">
+                    <span class="tab-num">[5]</span> connect.sh
+                </a>
+                <button id="exit-btn" class="nav-tab nav-tab-exit" title="Disconnect Session">
+                    <span class="tab-num">[x]</span> exit
+                </button>
+            </nav>
 
-            <!-- CORE STACK -->
-            <section class="section">
-                <div class="section-cmd">$ runtime.env --print-stack</div>
+            <!-- SESSION CONTEXT HEADER -->
+            <div class="session-context">
+                <div class="context-ssh-line">
+                    <span class="context-prompt">raman@prod-srv-01:~$</span>
+                    <span class="context-command">ssh -i ~/.ssh/id_ed25519 raman@portfolio.internal</span>
+                </div>
+                <div class="context-subline">
+                    <span id="login-time">Last login: checking...</span>
+                    <span class="env-tag">SPRING_PROFILES_ACTIVE=prod</span>
+                    <span class="env-tag">GATEWAY=Kong</span>
+                </div>
+            </div>
 
-                <pre class="terminal-block">
-Java · Spring Boot · Spring Security · Spring Cloud · Spring AI · REST APIs
-Docker · Kubernetes · Microservices Redis · Kafka (basic) · Kong Gateway
-            </pre>
-            </section>
+            <!-- TERMINAL MAIN BODY -->
+            <main class="terminal-body">
 
-            <!-- Relevant Work -->
-            <section class="section">
-                <div class="section-cmd">$ runtime.process --relevant-work</div>
+                <!-- WHOAMI / BIO SECTION -->
+                <section class="terminal-section" id="overview">
+                    <div class="section-cmd">
+                        <span class="prompt-sym">$</span> whoami --verbose
+                        <span class="cmd-comment"># Engineer Profile & Focus</span>
+                    </div>
 
-                <pre class="terminal-block">
-TxnFlow              → <a href="https://github.com/rexrk/TxnFlow" target="_blank">github</a>
-Ai Dev-Tools         → <a href="https://github.com/rexrk/ai-dev-tools" target="_blank">github</a>
-Movie Booking System → <a href="https://github.com/rexrk/MovieBookingBackendSystem" target="_blank">github</a>
+                    <div class="profile-card">
+                        <div class="profile-avatar-box">
+                            <div class="glitch">
+                                <img src="assets/profile.png" alt="Raman Kumar" class="profile-photo">
+                            </div>
+                        </div>
+                        <div class="profile-meta">
+                            <div class="meta-table">
+                                <span class="meta-key">name</span>
+                                <span class="meta-val">Raman Kumar</span>
 
-More on: <a href="https://github.com/rexrk" target="_blank">github.com/rexrk</a>
-                </pre>
-            </section>
+                                <span class="meta-key">role</span>
+                                <span class="meta-val">Backend Engineer <span class="meta-badge">Java & Microservices</span></span>
 
-            <!-- CURRENT FOCUS -->
-            <section class="section">
-                <div class="section-cmd">$ runtime.status --current</div>
+                                <span class="meta-key">experience</span>
+                                <span class="meta-val">2 Years (Production Systems)</span>
 
-                <pre class="terminal-block">
-• Designing secure authentication flows (JWT, OAuth2).
-• Building distributed backend services in Spring Boot.
-• Improving system reliability & API performance.
-• Experimenting with AI agents in backend workflows.
-            </pre>
-            </section>
+                                <span class="meta-key">location</span>
+                                <span class="meta-val">New Delhi, India</span>
 
-        </main>
+                                <span class="meta-key">status</span>
+                                <span class="meta-val" style="color: var(--terminal-green);">● Active · Ready for High-Scale Backend Challenges</span>
+                            </div>
+
+                            <p class="profile-bio">
+                                Backend engineer with a strong passion for understanding how distributed systems behave under the hood.
+                                From fault-tolerant APIs and microservices to database optimization and event-driven pipelines,
+                                I enjoy designing the robust foundations that keep production software performant and reliable.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RELEVANT WORK / MICROSERVICES -->
+                <section class="terminal-section" id="projects">
+                    <div class="section-cmd">
+                        <span class="prompt-sym">$</span> services.status --list-active
+                        <span class="cmd-comment"># Production Architecture & Projects</span>
+                    </div>
+
+                    <div class="projects-grid">
+
+                        <!-- PROJECT 1: TxnFlow -->
+                        <article class="service-card">
+                            <div class="service-header">
+                                <div class="endpoint-tag">
+                                    <span class="http-method">POST</span>
+                                    <span class="endpoint-path">/api/v1/payments/txn-flow</span>
+                                </div>
+                                <div class="service-status-pill">
+                                    <span class="status-pulse"></span>
+                                    <span>200 OK · RUNNING</span>
+                                </div>
+                            </div>
+                            <div class="service-body">
+                                <h3 class="service-title">TxnFlow — Distributed Transaction & Payment Orchestrator</h3>
+                                <p class="service-desc">
+                                    A resilient transaction workflow orchestration backend designed to handle distributed multi-stage
+                                    financial processing with idempotency guarantees, state persistence, and compensation logic.
+                                </p>
+                                <ul class="service-features">
+                                    <li>Distributed transaction state machine with automatic failure rollback & reconciliation</li>
+                                    <li>Idempotency and concurrency control using Redis distributed locking (Redlock)</li>
+                                    <li>Asynchronous event-driven updates with event streaming pipelines</li>
+                                </ul>
+                                <div class="service-tags">
+                                    <span class="tech-tag">Java 21</span>
+                                    <span class="tech-tag">Spring Boot</span>
+                                    <span class="tech-tag">Kafka</span>
+                                    <span class="tech-tag">Redis</span>
+                                    <span class="tech-tag">PostgreSQL</span>
+                                    <span class="tech-tag">Docker</span>
+                                </div>
+                                <div class="service-footer">
+                                    <span style="color: var(--text-muted); font-size: 11px;">SERVICE: txn-flow-service</span>
+                                    <a href="https://github.com/rexrk/TxnFlow" target="_blank" rel="noopener noreferrer" class="action-link">
+                                        <span>$ git clone / TxnFlow ↗</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- PROJECT 2: ai-dev-tools -->
+                        <article class="service-card">
+                            <div class="service-header">
+                                <div class="endpoint-tag">
+                                    <span class="http-method get">GET</span>
+                                    <span class="endpoint-path">/api/v1/tooling/ai-dev-tools</span>
+                                </div>
+                                <div class="service-status-pill">
+                                    <span class="status-pulse"></span>
+                                    <span>200 OK · ACTIVE</span>
+                                </div>
+                            </div>
+                            <div class="service-body">
+                                <h3 class="service-title">ai-dev-tools — Spring Boot AI Starters & Developer Accelerators</h3>
+                                <p class="service-desc">
+                                    Modular Spring Boot starters and developer intelligence tooling engineered to embed LLM agent
+                                    workflows, automated context retrieval, and boilerplate acceleration into backend projects.
+                                </p>
+                                <ul class="service-features">
+                                    <li>Custom Spring Boot AutoConfiguration modules for plug-and-play developer extensions</li>
+                                    <li>Integration with Spring AI abstractions for resilient prompt pipelines and telemetry</li>
+                                    <li>Developer velocity utilities for contextual code analysis and automated workflows</li>
+                                </ul>
+                                <div class="service-tags">
+                                    <span class="tech-tag">Java 21</span>
+                                    <span class="tech-tag">Spring Boot</span>
+                                    <span class="tech-tag">Spring AI</span>
+                                    <span class="tech-tag">REST APIs</span>
+                                    <span class="tech-tag">OpenAI API</span>
+                                </div>
+                                <div class="service-footer">
+                                    <span style="color: var(--text-muted); font-size: 11px;">STARTER: ai-dev-tools-core</span>
+                                    <a href="https://github.com/rexrk/ai-dev-tools" target="_blank" rel="noopener noreferrer" class="action-link">
+                                        <span>$ git clone / ai-dev-tools ↗</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- PROJECT 3: Movie Booking Backend System -->
+                        <article class="service-card">
+                            <div class="service-header">
+                                <div class="endpoint-tag">
+                                    <span class="http-method">POST</span>
+                                    <span class="endpoint-path">/api/v1/bookings/reserve</span>
+                                </div>
+                                <div class="service-status-pill">
+                                    <span class="status-pulse"></span>
+                                    <span>200 OK · STABLE</span>
+                                </div>
+                            </div>
+                            <div class="service-body">
+                                <h3 class="service-title">Movie Booking System — Concurrency & Seat Locking Engine</h3>
+                                <p class="service-desc">
+                                    High-throughput backend system built to solve race conditions and double-booking anomalies
+                                    during peak traffic window reservations with strict isolation levels.
+                                </p>
+                                <ul class="service-features">
+                                    <li>Multi-threaded seat reservation engine with optimistic and pessimistic locking mechanisms</li>
+                                    <li>Low-latency cache-aside pattern with Redis for real-time cinema seating layouts</li>
+                                    <li>Stateless authentication and role-based access control with Spring Security & JWT</li>
+                                </ul>
+                                <div class="service-tags">
+                                    <span class="tech-tag">Java</span>
+                                    <span class="tech-tag">Spring Boot</span>
+                                    <span class="tech-tag">Spring Security</span>
+                                    <span class="tech-tag">Redis</span>
+                                    <span class="tech-tag">MySQL</span>
+                                </div>
+                                <div class="service-footer">
+                                    <span style="color: var(--text-muted); font-size: 11px;">SERVICE: booking-engine</span>
+                                    <a href="https://github.com/rexrk/MovieBookingBackendSystem" target="_blank" rel="noopener noreferrer" class="action-link">
+                                        <span>$ git clone / MovieBooking ↗</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <div style="margin-top: 14px; text-align: right;">
+                        <a href="https://github.com/rexrk" target="_blank" rel="noopener noreferrer" class="action-link secondary">
+                            <span>$ gh repo list rexrk --view-all ↗</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- CORE STACK MATRIX -->
+                <section class="terminal-section" id="stack">
+                    <div class="section-cmd">
+                        <span class="prompt-sym">$</span> runtime.env --print-matrix
+                        <span class="cmd-comment"># Tech Stack & Engineering Toolkit</span>
+                    </div>
+
+                    <div class="stack-matrix">
+                        <div class="stack-group">
+                            <div class="stack-group-title">
+                                <span class="chip-dot"></span> Languages & Core
+                            </div>
+                            <div class="stack-chips">
+                                <span class="stack-chip featured">Java 17 / 21</span>
+                                <span class="stack-chip">SQL</span>
+                                <span class="stack-chip">Python</span>
+                                <span class="stack-chip">Bash / Shell</span>
+                            </div>
+                        </div>
+
+                        <div class="stack-group">
+                            <div class="stack-group-title">
+                                <span class="chip-dot"></span> Frameworks & Backend
+                            </div>
+                            <div class="stack-chips">
+                                <span class="stack-chip featured">Spring Boot</span>
+                                <span class="stack-chip">Spring Security</span>
+                                <span class="stack-chip">Spring Cloud</span>
+                                <span class="stack-chip">Spring AI</span>
+                                <span class="stack-chip">Hibernate / JPA</span>
+                                <span class="stack-chip">RESTful APIs</span>
+                            </div>
+                        </div>
+
+                        <div class="stack-group">
+                            <div class="stack-group-title">
+                                <span class="chip-dot"></span> Data & Distributed Systems
+                            </div>
+                            <div class="stack-chips">
+                                <span class="stack-chip featured">Redis (Cache/Locks)</span>
+                                <span class="stack-chip">Kafka (Event Streams)</span>
+                                <span class="stack-chip">PostgreSQL</span>
+                                <span class="stack-chip">MySQL</span>
+                                <span class="stack-chip">Microservices</span>
+                            </div>
+                        </div>
+
+                        <div class="stack-group">
+                            <div class="stack-group-title">
+                                <span class="chip-dot"></span> Cloud & Infrastructure
+                            </div>
+                            <div class="stack-chips">
+                                <span class="stack-chip featured">Docker</span>
+                                <span class="stack-chip">Kubernetes</span>
+                                <span class="stack-chip">Kong Gateway</span>
+                                <span class="stack-chip">Linux Internals</span>
+                                <span class="stack-chip">Git / CI/CD</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CURRENT FOCUS -->
+                <section class="terminal-section">
+                    <div class="section-cmd">
+                        <span class="prompt-sym">$</span> runtime.status --current-focus
+                        <span class="cmd-comment"># Active Engineering Initiatives</span>
+                    </div>
+
+                    <div class="terminal-block">
+                        <ul class="focus-list">
+                            <li>
+                                <span class="focus-marker">›</span>
+                                <span>Designing zero-trust, stateless authentication & authorization flows (OAuth2 Resource Server, JWT).</span>
+                            </li>
+                            <li>
+                                <span class="focus-marker">›</span>
+                                <span>Building distributed backend microservices with high throughput and data consistency in Spring Boot.</span>
+                            </li>
+                            <li>
+                                <span class="focus-marker">›</span>
+                                <span>Tuning database connection pools (HikariCP), query execution plans, and low-latency Redis caching layers.</span>
+                            </li>
+                            <li>
+                                <span class="focus-marker">›</span>
+                                <span>Integrating autonomous AI agent workflows into backend developer toolchains and API diagnostics.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- INTERACTIVE CLI COMMAND PROMPT -->
+                <section class="terminal-section">
+                    <div class="cli-box">
+                        <div class="cli-input-line">
+                            <span class="cli-prompt-label">raman@portfolio:~$</span>
+                            <input type="text" id="cli-input" class="cli-input" placeholder="Type a command (e.g. 'help', 'projects', 'resume')..." autocomplete="off" spellcheck="false">
+                        </div>
+                        <div class="cli-hints">
+                            <span>Quick commands:</span>
+                            <span class="cli-hint-tag" onclick="runCommand('help')">help</span>
+                            <span class="cli-hint-tag" onclick="runCommand('projects')">projects</span>
+                            <span class="cli-hint-tag" onclick="runCommand('stack')">stack</span>
+                            <span class="cli-hint-tag" onclick="runCommand('resume')">resume</span>
+                            <span class="cli-hint-tag" onclick="runCommand('contact')">contact</span>
+                            <span class="cli-hint-tag" onclick="runCommand('curl /health')">curl /health</span>
+                            <span class="cli-hint-tag" onclick="runCommand('clear')">clear</span>
+                        </div>
+                        <div id="cli-output" class="cli-output" style="display: none;"></div>
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
 
     </div>
 
-    <!-- EXIT TEXT (ONLY THIS SHOWS AFTER FADE) -->
-    <div id="exit-output" class="exit-only">
-        <pre class="terminal-block">
-$ exit
-Connection closed by remote host.
-</pre>
+    <!-- EXIT OVERLAY SCREEN -->
+    <div id="exit-output" class="exit-overlay">
+        <div class="exit-content">
+            <p class="exit-cmd">$ exit</p>
+            <p>Connection to <span style="color: var(--cyan);">portfolio.internal</span> closed by remote host.</p>
+            <p style="color: var(--text-muted); font-size: 12px;">Session terminated gracefully [code 0].</p>
+            <button class="exit-reconnect-btn" onclick="reconnectSession()">⚡ Reconnect Session</button>
+        </div>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- STARTUP LOGIC SCRIPT -->
     <script src="startup.js"></script>
 
-    <!-- LOGIN TIME -->
+    <!-- WORKSTATION & CLI LOGIC -->
     <script>
+        // Set dynamic login time
         (function () {
             const el = document.getElementById("login-time");
-            if (!el) return;
-
-            el.textContent =
-                "Last login: " +
-                new Date().toLocaleString("en-IN", {
+            if (el) {
+                el.textContent = "Last login: " + new Date().toLocaleString("en-IN", {
                     weekday: "short",
                     year: "numeric",
                     month: "short",
@@ -135,26 +437,175 @@ Connection closed by remote host.
                     minute: "2-digit",
                     second: "2-digit",
                     timeZoneName: "short"
-                }) +
-                " · Environment: prod";
+                }) + " from 127.0.0.1";
+            }
         })();
-    </script>
 
-    <!-- EXIT HANDLER -->
-    <script>
-        document.getElementById("exit-btn").addEventListener("click", () => {
+        // Small simulated telemetry metrics fluctuations
+        setInterval(() => {
+            const latencyEl = document.getElementById("latency-metric");
+            if (latencyEl) {
+                const randomLat = Math.floor(Math.random() * 5) + 11;
+                latencyEl.textContent = randomLat + "ms";
+            }
+            const heapEl = document.getElementById("heap-metric");
+            if (heapEl) {
+                const randomHeap = Math.floor(Math.random() * 20) + 380;
+                heapEl.textContent = randomHeap + "MB / 1024MB";
+            }
+        }, 3500);
+
+        // Smooth scroll helper
+        function smoothScroll(targetId) {
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        // Window Controls (Traffic Lights)
+        document.getElementById("dot-exit").addEventListener("click", triggerExit);
+        document.getElementById("exit-btn").addEventListener("click", triggerExit);
+
+        const win = document.getElementById("terminal-window");
+        document.getElementById("dot-minimize").addEventListener("click", () => {
+            const body = document.querySelector(".terminal-body");
+            if (body) {
+                body.style.display = body.style.display === "none" ? "block" : "none";
+            }
+        });
+
+        document.getElementById("dot-maximize").addEventListener("click", () => {
+            const container = document.getElementById("app");
+            if (container) {
+                if (container.style.maxWidth === "98%") {
+                    container.style.maxWidth = "1100px";
+                } else {
+                    container.style.maxWidth = "98%";
+                }
+            }
+        });
+
+        function triggerExit() {
             const app = document.getElementById("app");
             const exitText = document.getElementById("exit-output");
-
-            // fade everything
-            app.style.transition = "opacity 0.8s ease";
+            app.style.transition = "opacity 0.4s ease";
             app.style.opacity = "0";
-
-            // show exit text AFTER fade
             setTimeout(() => {
+                exitText.style.pointerEvents = "all";
                 exitText.style.opacity = "1";
-            }, 800);
-        });
+            }, 400);
+        }
+
+        function reconnectSession() {
+            const app = document.getElementById("app");
+            const exitText = document.getElementById("exit-output");
+            exitText.style.opacity = "0";
+            exitText.style.pointerEvents = "none";
+            setTimeout(() => {
+                app.style.opacity = "1";
+            }, 200);
+        }
+
+        // Interactive CLI Prompt implementation
+        const cliInput = document.getElementById("cli-input");
+        const cliOutput = document.getElementById("cli-output");
+
+        function runCommand(cmd) {
+            if (!cmd || !cmd.trim()) return;
+            const cleanCmd = cmd.trim().toLowerCase();
+            let response = "";
+
+            switch (cleanCmd) {
+                case "help":
+                    response = 
+`Available CLI commands:
+  whoami       - Display developer summary
+  projects     - Jump to production microservices
+  stack        - View backend tech matrix
+  resume       - Open resume page
+  contact      - Open connection channels
+  curl /health - Query application health endpoint
+  startup      - Replay Spring Boot boot sequence
+  clear        - Clear terminal output
+  exit         - Terminate current SSH session`;
+                    break;
+                case "whoami":
+                    smoothScroll("overview");
+                    response = "Raman Kumar — Backend Engineer (Java, Spring Boot, Microservices, Distributed Systems).";
+                    break;
+                case "projects":
+                case "services":
+                    smoothScroll("projects");
+                    response = "Navigating to [services.api]...";
+                    break;
+                case "stack":
+                    smoothScroll("stack");
+                    response = "Navigating to [stack.env]...";
+                    break;
+                case "resume":
+                case "cv":
+                    window.location.href = "resume.html";
+                    response = "Transferring to resume.html...";
+                    break;
+                case "contact":
+                case "connect":
+                    window.location.href = "contact.html";
+                    response = "Transferring to contact.html...";
+                    break;
+                case "curl /health":
+                case "curl /actuator/health":
+                    response = 
+`HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "status": "UP",
+  "components": {
+    "db": { "status": "UP", "details": { "database": "PostgreSQL", "validationQuery": "isValid()" } },
+    "redis": { "status": "UP", "details": { "version": "7.2.4" } },
+    "diskSpace": { "status": "UP", "details": { "total": 512000000000, "free": 384000000000 } }
+  }
+}`;
+                    break;
+                case "startup":
+                case "reboot":
+                    sessionStorage.removeItem("startupDone");
+                    window.location.reload();
+                    return;
+                case "clear":
+                    cliOutput.innerHTML = "";
+                    cliOutput.style.display = "none";
+                    if (cliInput) cliInput.value = "";
+                    return;
+                case "exit":
+                    triggerExit();
+                    return;
+                case "sudo hire":
+                case "hire":
+                    response = "Access Granted! Email kraman938@gmail.com or visit contact.html to initiate hiring protocol.";
+                    break;
+                default:
+                    response = `bash: command not found: ${cmd}. Type 'help' for available commands.`;
+            }
+
+            cliOutput.style.display = "block";
+            cliOutput.innerHTML = `<span style="color: var(--cyan);">$ ${escapeHtml(cmd)}</span>\n${response}`;
+            if (cliInput) cliInput.value = "";
+            cliOutput.scrollTop = cliOutput.scrollHeight;
+        }
+
+        if (cliInput) {
+            cliInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    runCommand(this.value);
+                }
+            });
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
     </script>
 
 </body>
